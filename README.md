@@ -5,8 +5,8 @@ Attiny85/digispark payload, that uses Invoke-Mimikatz to dump credentials and ex
 #### This method of course applies to other layouts
 By default digispark uses the en/us keyboard layout. The easiest way I found was to include a modified header file created by https://github.com/adnan-alhomssi. 
 
-* Download DigiKeyboard.h from this repo or https://github.com/adnan-alhomssi/DigistumpArduinoDe/blob/master/digistump-avr/libraries/DigisparkKeyboard/DigiKeyboardDe.h
-* Copy the file to _%localappdata%\Arduino15\packages\digistump\hardware\avr\1.6.7\libraries\DigisparkKeyboard._
+* Download DigiKeyboard.h from this repo or https://github.com/adnan-alhomssi/DigistumpArduinoDe/blob/master/digistump-avr/libraries/DigisparkKeyboard/DigiKeyboardDe.h.
+* Copy the file to _%localappdata%\Arduino15\packages\digistump\hardware\avr\1.6.7\libraries\DigisparkKeyboard_.
 * Replace _#include "DigiKeyboard.h"_ with _#include "DigiKeyboardDe.h" in your script_.
 * Find and replace every instance of _DigiKeyboard.println_ with _DigiKeyboardDe.println_ (if required).
 * Find and replace every instance of _DigiKeyboard.sendKeyStroke_ with _DigiKeyboardDe.sendKeyStroke_ (if required).
