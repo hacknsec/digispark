@@ -3,7 +3,7 @@ Attiny85/digispark payload, that uses Invoke-Mimikatz to dump credentials and ex
 
 ### Change the digispark keyboard layout to german
 #### This method of course applies to other layouts
-By default digispark uses the en/us keyboard layout. The easiest way I found was to include a modified header file created by https://github.com/adnan-alhomssi. 
+By default digispark uses the en/us keyboard layout. The easiest way I found was to include a modified header file. 
 
 * Download DigiKeyboard.h from this repo or https://github.com/adnan-alhomssi/DigistumpArduinoDe/blob/master/digistump-avr/libraries/DigisparkKeyboard/DigiKeyboardDe.h.
 * Copy the file to _%localappdata%\Arduino15\packages\digistump\hardware\avr\1.6.7\libraries\DigisparkKeyboard_.
@@ -15,3 +15,10 @@ By default digispark uses the en/us keyboard layout. The easiest way I found was
 Go to your GoogleMail security settings and generate an app-password. You can use this password in the script.
 
 Happy ducking!
+
+
+#### Credits:
+
+* @thecybermentor - https://youtu.be/uH-4btjE56E
+* https://github.com/MTK911/Attiny85/tree/master/payloads
+* https://github.com/adnan-alhomssi/DigistumpArduinoDe
