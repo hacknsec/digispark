@@ -22,3 +22,4 @@ Happy ducking!
 * @thecybermentor - https://youtu.be/uH-4btjE56E
 * https://github.com/MTK911/Attiny85/tree/master/payloads
 * https://github.com/adnan-alhomssi/DigistumpArduinoDe
+* https://gist.github.com/b1tdust
