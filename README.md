@@ -1,5 +1,5 @@
 ## digispark
-Attiny85/digispark payload, that uses Invoke-Mimikatz to dump credentials and exports the systems wifi-passwords. All data is sent to you via email. The payload is available for en/us and german keyboard layout.
+Attiny85/digispark payload, that uses Invoke-Mimikatz to dump credentials and exports the systems wifi-passwords. All data is sent to you via email. The payload is available for en/us and german keyboard layout (Tested on Win10 2004 Build 19041.746).
 
 ### Change the digispark keyboard layout to german
 #### This method of course applies to other layouts
